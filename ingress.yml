@@ -57,8 +57,10 @@ spec:
       - path: /
         pathType: Prefix
         backend:
-          serviceName: tesla-service
-          servicePort: 80
+          service:
+            name: tesla-service
+            port:
+              number: 80
 
 
 
