@@ -12,10 +12,10 @@ resource "null_resource" "patch-coredns-fargate" {
   }
 }
 
-# resource "null_resource" "kubectl-apply" {
-#   depends_on = [ null_resource.patch-coredns-fargate ]
-#   provisioner "local-exec" {
-#     command = "kubectl apply -f deployment/ingress.yml"
-#   }
-# }
+resource "null_resource" "kubectl-apply" {
+  depends_on = [ null_resource.patch-coredns-fargate ]
+  provisioner "local-exec" {
+    command = "/bin/bash ./script/argocd.sh"
+  }
+}
 
